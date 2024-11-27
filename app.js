@@ -46,8 +46,8 @@ app.post('/email', (req, res) => {
   axios
   .post('https://api.mailjet.com/v3.1/send', payload, {
     auth: {
-      username: MORIELLO_API_KEY,
-      password: MORIELLO_SECRET_KEY
+      username: process.env.MORIELLO_API_KEY,
+      password: process.env.MORIELLO_SECRET_KEY
     }
   })
   .then(response => {
