@@ -1,8 +1,61 @@
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
+const axios = require('axios');
 const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => res.type('html').send(html));
+
+// Define a POST endpoint
+app.post('/email', (req, res) => {
+    // Extract data from the request body
+    const { Name, Email, Message } = req.body;
+
+    // Log the received data (for debugging purposes)
+    console.log('Received Contact Form Submission:', { Name, Email, Message });
+
+    const mailjetUrl = "https://api.mailjet.com/v3.1/send";
+
+    const emailData = {
+        Messages: [
+            {
+                From: {
+                    Email: "jbiebelberg@gmail.com",
+                    Name: "Your Website"
+                },
+                To: [
+                    {
+                        Email: "jbiebelberg@gmail.com",
+                        Name: "Stephano Moriello"
+                    }
+                ],
+                Subject: "New Inquiry!",
+                TextPart: "This is an email notification sent from your website:",
+                HTMLPart: "<p>Inquiry from: " + Name + " <br> " + "Their email address: " + Email + " <br> " + "Their message: " + Message + " </p>"
+            }
+        ]
+    };
+
+  axios
+  .post('https://api.mailjet.com/v3.1/send', payload, {
+    auth: {
+      username: MORIELLO_API_KEY,
+      password: MORIELLO_SECRET_KEY
+    }
+  })
+  .then(response => {
+    console.log('Email sent successfully:', response.data);
+  })
+  .catch(error => {
+    console.error('Error sending email:', error.response.data);
+  });
+
+    // Respond with a success message
+    res.status(200).json({
+        message: 'Contact form submitted successfully!',
+        receivedData: { Name, Email, Message }
+    });
+});
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
