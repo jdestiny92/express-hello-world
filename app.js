@@ -23,7 +23,7 @@ app.post('/email', (req, res) => {
 
     const mailjetUrl = "https://api.mailjet.com/v3.1/send";
 
-    const emailData = {
+    const payload = {
         Messages: [
             {
                 From: {
