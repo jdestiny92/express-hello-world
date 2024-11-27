@@ -9,6 +9,8 @@ app.get("/", (req, res) => res.type('html').send(html));
 // Define a POST endpoint
 app.post('/email', (req, res) => {
     // Extract data from the request body
+    console.log(req.body);
+    
     const { Name, Email, Message } = req.body;
 
     // Log the received data (for debugging purposes)
