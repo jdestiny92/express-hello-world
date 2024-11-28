@@ -35,7 +35,7 @@ app.post('/email', (req, res) => {
                 },
                 To: [
                     {
-                        Email: "jbiebelberg@gmail.com",
+                        Email: "moriellohomesolutionsllc@gmail.com",
                         Name: "Stephano Moriello"
                     }
                 ],
