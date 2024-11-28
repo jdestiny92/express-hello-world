@@ -30,12 +30,12 @@ app.post('/email', (req, res) => {
         Messages: [
             {
                 From: {
-                    Email: "jbiebelberg@gmail.com",
+                    Email: "moriellohomesolutionsllc@gmail.com",
                     Name: "Your Website"
                 },
                 To: [
                     {
-                        Email: "jbiebelberg@gmail.com",
+                        Email: "moriellohomesolutionsllc@gmail.com",
                         Name: "Stephano Moriello"
                     }
                 ],
